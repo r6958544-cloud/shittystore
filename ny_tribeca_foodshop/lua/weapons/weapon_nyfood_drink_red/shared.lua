@@ -1,0 +1,20 @@
+if SERVER then AddCSLuaFile() end
+
+SWEP.Base = "weapon_smallconsumable"
+SWEP.PrintName = "Энергетик"
+SWEP.Category = "N.Y. Tribeca"
+SWEP.Spawnable = false
+SWEP.AdminOnly = true
+SWEP.NYFoodShopItem = "drink_red"
+SWEP.NYFoodShopModel = "models/jorddrink/redcan01a.mdl"
+
+function SWEP:InitializeAdd()
+    if self.BaseClass and isfunction(self.BaseClass.InitializeAdd) then
+        self.BaseClass.InitializeAdd(self)
+    end
+    self:SetModel(self.NYFoodShopModel)
+    if isfunction(self.SetCurModel) then self:SetCurModel(self.NYFoodShopModel) end
+    self.WorldModel = self.NYFoodShopModel
+    self.Eating = 5
+    self.CDEating = 0
+end
